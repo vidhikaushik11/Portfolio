@@ -19,7 +19,12 @@
       <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span></button>
       <div class="nav-links" id="nav-links">
         <a class="nav-link active" href="#home">Home</a><a class="nav-link" href="#about">About</a><a class="nav-link" href="#skills">Skills</a><a class="nav-link" href="#projects">Projects</a><a class="nav-link" href="#contact">Contact</a>
-        <a class="button button-small button-outline" href="./Vidhi_Kaushik_Software_Developer_Resume.pdf" download>Download CV ↓</a>
+        <!--<a class="button button-small button-outline" href="./Vidhi_Kaushik_Software_Developer_Resume.pdf" download>Download CV ↓</a>-->
+        <button class="button button-small button-outline"
+        type="button"
+        id="requestResumeBtn">
+    Request My Resume ↓
+</button>
       </div>
     </nav>
   </header>
@@ -83,5 +88,43 @@
     </div></section>
   </main>
   <footer><div class="container footer"><a class="brand" href="#home"><span class="brand-mark">VK</span> Vidhi Kaushik</a><p>Designed and built with care. © <span id="year"></span> Vidhi Kaushik.</p><a href="#home">Back to top ↑</a></div></footer>
+<dialog id="resumeDialog" class="resume-dialog">
+
+    <button type="button" id="closeResumeDialog"
+            class="close-dialog" aria-label="Close">×</button>
+
+    <h2>Request My Resume</h2>
+
+    <p>Please share your details.
+       I'll send my resume to your email.</p>
+
+    <form action="https://formsubmit.co/kaushikvidhi11@outlook.com"
+          method="POST">
+
+        <input type="hidden" name="_subject"
+               value="New Resume Request - Portfolio">
+
+        <input type="hidden" name="_template"
+               value="table">
+
+        <label for="visitorName">Your Name</label>
+        <input type="text" id="visitorName"
+               name="name" required>
+
+        <label for="visitorEmail">Email Address</label>
+        <input type="email" id="visitorEmail"
+               name="email" required>
+
+        <label for="visitorMessage">Message (Optional)</label>
+        <textarea id="visitorMessage"
+                  name="message"
+                  placeholder="Any additional information..."></textarea>
+
+        <button type="submit" class="button primary">
+            Send Resume Request
+        </button>
+
+    </form>
+</dialog>
 </body>
 </html>

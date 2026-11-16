@@ -1,11 +1,37 @@
-$(document).ready(()=>{
-    $('navbar a').on('click',(e)=>{
-if(this.hash !==''){
-    e.preventDefault();
-    const hash=this.hash;
-    $('html, body').animate({
-        scrollTop:$(hash).offset().top
-    },800);
-}
-    });  
+// Responsive navigation, active section highlighting and footer year.
+document.addEventListener("DOMContentLoaded", () => {
+  const menuButton = document.querySelector(".menu-toggle");
+  const navLinks = document.querySelector(".nav-links");
+  const navItems = document.querySelectorAll(".nav-link");
+
+  if (menuButton && navLinks) {
+    menuButton.addEventListener("click", () => {
+      const open = navLinks.classList.toggle("open");
+      menuButton.setAttribute("aria-expanded", String(open));
+      menuButton.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+    });
+
+    navItems.forEach(link => link.addEventListener("click", () => {
+      navLinks.classList.remove("open");
+      menuButton.setAttribute("aria-expanded", "false");
+      menuButton.setAttribute("aria-label", "Open navigation");
+    }));
+  }
+
+  const year = document.getElementById("year");
+  if (year) year.textContent = new Date().getFullYear();
+
+  if ("IntersectionObserver" in window) {
+    const sections = document.querySelectorAll("main section[id]");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navItems.forEach(link => link.classList.toggle(
+            "active", link.getAttribute("href") === "#" + entry.target.id
+          ));
+        }
+      });
+    }, { rootMargin: "-35% 0px -55% 0px" });
+    sections.forEach(section => observer.observe(section));
+  }
 });

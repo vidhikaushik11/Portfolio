@@ -35,3 +35,20 @@ document.addEventListener("DOMContentLoaded", () => {
     sections.forEach(section => observer.observe(section));
   }
 });
+const resumeDialog = document.getElementById("resumeDialog");
+
+document.getElementById("requestResumeBtn")
+    ?.addEventListener("click", () => {
+        resumeDialog.showModal();
+    });
+
+document.getElementById("closeResumeDialog")
+    ?.addEventListener("click", () => {
+        resumeDialog.close();
+    });
+
+resumeDialog?.addEventListener("click", (event) => {
+    if (event.target === resumeDialog) {
+        resumeDialog.close();
+    }
+});
